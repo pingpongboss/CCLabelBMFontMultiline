@@ -1,0 +1,14 @@
+A replacement for CCLabelBMFont. Useful if you want:
+ - Center alignment
+ - Auto word wrap
+ - Specify dimensions
+
+To use, download both CCLabelBMFontMultiline.h and CCLabelBMFontMultiline.m, open XCode, and drag the 2 files into the Classes Group.
+
+In your code, do:
+
+CCLabelBMFontMultiline *label = [CCLabelBMFontMultiline
+	labelWithString:@"My Label"
+	fntFile:@"my-font-file.fnt"
+	dimensions:CGSizeMake(200, 100)
+	alignment:CenterAlignment];
