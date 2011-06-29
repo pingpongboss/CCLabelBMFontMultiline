@@ -6,16 +6,20 @@
 
 #import "CCLabelBMFontMultiline.h"
 
-@interface CCLabelBMFontMultiline(Private) 
+@interface CCLabelBMFontMultiline()
+
+//Redefine properties readwrite for internal use
+
 - (void)updateLabel;
+
 @end
 
 @implementation CCLabelBMFontMultiline
 
-@synthesize label = label_;
 @synthesize dimension = dimension_;
 @synthesize alignment = alignment_;
-@synthesize fntFile = fntFile_;
+
+@synthesize debug = debug_;
 
 #pragma mark -
 #pragma mark Lifecycle Methods
@@ -23,15 +27,16 @@
 - (id)initWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment {
     self = [super init];
     if (self) {
+        label_ = [[CCLabelBMFont alloc] initWithString:string fntFile:font];
+        fntFile_ = [font copy];
+        initialString_ = [string copy];
         
-        self.dimension = size;
-        self.alignment = alignment;
-        self.fntFile = font;
+        dimension_ = size;
+        alignment_ = alignment;
         
         self.contentSize = size;
         self.anchorPoint = ccp(0.5f, 0.5f);
         
-        self.label = [CCLabelBMFont labelWithString:string fntFile:font];
         
         [self updateLabel];
     }
@@ -43,26 +48,32 @@
 }
 
 - (void)dealloc {
-    self.label = nil;
-    self.fntFile = nil;
+    [label_ release], label_ = nil;
+    [fntFile_ release], fntFile_ = nil;
+    [initialString_ release], initialString_ = nil;
+    
     [super dealloc];
 }
 
 #pragma mark -
 
 - (void)updateLabel {
+    [self removeChild:label_ cleanup:YES];
+    [label_ release];
+    label_ = [[CCLabelBMFont alloc] initWithString:initialString_ fntFile:fntFile_];
+    
     //Step 1: Make multiline
     
     NSString *multilineString = @"", *lastWord = @"";
     int line = 1, i = 0, stringLength = [[label_ string] length];
     float startOfLine = -1, startOfWord = -1;
     //Go through each character and insert line breaks as necessary
-    for (CCSprite *characterSprite in self.label.children) {
+    for (CCSprite *characterSprite in label_.children) {
         
         if (i >= stringLength || i < 0)
             break;
         
-        unichar character = [[self.label string] characterAtIndex:i];
+        unichar character = [[label_ string] characterAtIndex:i];
         
         if (startOfWord == -1)
             startOfWord = characterSprite.position.x - characterSprite.contentSize.width/2;
@@ -84,7 +95,7 @@
             //CCLabelBMFont do not have a character for new lines, so do NOT "continue;" in the for loop. Process the next character
             if (i >= stringLength || i < 0)
                 break;
-            character = [[self.label string] characterAtIndex:i];
+            character = [[label_ string] characterAtIndex:i];
             
             if (startOfWord == -1)
                 startOfWord = characterSprite.position.x - characterSprite.contentSize.width/2;
@@ -126,81 +137,101 @@
     
     multilineString = [multilineString stringByAppendingFormat:@"%@", lastWord];
     
-    [self removeChild:self.label cleanup:YES];
-    self.label = [CCLabelBMFont labelWithString:multilineString fntFile:self.fntFile];
-    [self addChild:self.label];
+    [label_ release];
+    label_ = [[CCLabelBMFont alloc] initWithString:multilineString fntFile:fntFile_];
+    [self addChild:label_];
     
     //Step 2: Make alignment
     
-    switch (self.alignment) {
-        case CenterAlignment:
-            i = 0;
-            int lineNumber = 0;
-            //Go through line by line
-            for (NSString *lineString in [multilineString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
-                int lineWidth = 0;
-                
-                //Find index of last character in this line
-                int index = i + [lineString length] - 1;
-                if (index < 0 || index >= [self.label.children count])
-                    continue;
-                
-                //Find position of last character on the line
-                CCSprite *lastChar = [self.label.children objectAtIndex:index];
-                
-                lineWidth = lastChar.position.x + lastChar.contentSize.width/2;
-                
-                //Figure out how much to shift each character in this line horizontally
-                float shift = self.label.contentSize.width/2 - lineWidth/2;
-                
-                if (shift != 0) {
-                    int j = 0;
-                    //For each character, shift it so that the line is center aligned
-                    for (j = 0; j < [lineString length]; j++) {
-                        index = i + j;
-                        if (index < 0 || index >= [self.label.children count])
-                            continue;
-                        CCSprite *characterSprite = [self.label.children objectAtIndex:index];
-                        characterSprite.position = ccpAdd(characterSprite.position, ccp(shift, 0));
-                    }
-                }
-                i += [lineString length];
-                lineNumber++;
+    if (self.alignment != LeftAlignment) {
+        
+        i = 0;
+        int lineNumber = 0;
+        //Go through line by line
+        for (NSString *lineString in [multilineString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
+            int lineWidth = 0;
+            
+            //Find index of last character in this line
+            int index = i + [lineString length] - 1;
+            if (index < 0 || index >= [label_.children count])
+                continue;
+            
+            //Find position of last character on the line
+            CCSprite *lastChar = [label_.children objectAtIndex:index];
+            
+            lineWidth = lastChar.position.x + lastChar.contentSize.width/2;
+            
+            //Figure out how much to shift each character in this line horizontally
+            float shift = 0;
+            switch (self.alignment) {
+                case CenterAlignment:
+                    shift = label_.contentSize.width/2 - lineWidth/2;
+                    break;
+                case RightAlignment:
+                    shift = label_.contentSize.width - lineWidth;
+                default:
+                    break;
             }
-            break;
-        case LeftAlignment:
-        default:
-            break;        
+            
+            if (shift != 0) {
+                int j = 0;
+                //For each character, shift it so that the line is center aligned
+                for (j = 0; j < [lineString length]; j++) {
+                    index = i + j;
+                    if (index < 0 || index >= [label_.children count])
+                        continue;
+                    CCSprite *characterSprite = [label_.children objectAtIndex:index];
+                    characterSprite.position = ccpAdd(characterSprite.position, ccp(shift, 0));
+                }
+            }
+            i += [lineString length];
+            lineNumber++;
+        }
     }
     
-    self.contentSize = self.label.contentSize;    
-    self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+    self.contentSize = label_.contentSize;    
+    label_.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 }
 
 //Draw the bounding box of this CCLabelBMFontMultiline for troubleshooting
-/*
 - (void)draw {
-    glLineWidth(5);
-    glColor4f(255, 0, 0, 255);
-    ccDrawLine(ccp(0,0), ccp(0, self.contentSize.height));
-    ccDrawLine(ccp(0,0), ccp(self.contentSize.width, 0));
-    ccDrawLine(ccp(self.contentSize.width, 0), ccp(self.contentSize.width, self.contentSize.height));
-    ccDrawLine(ccp(0, self.contentSize.height), ccp(self.contentSize.width, self.contentSize.height));
-    ccDrawLine(ccp(0,0), ccp(self.contentSize.width, self.contentSize.height));
-    ccDrawLine(ccp(0, self.contentSize.height), ccp(self.contentSize.width, 0));
+    if (debug_) {
+        glLineWidth(5);
+        glColor4f(255, 0, 0, 255);
+        ccDrawLine(ccp(0,0), ccp(0, self.contentSize.height));
+        ccDrawLine(ccp(0,0), ccp(self.contentSize.width, 0));
+        ccDrawLine(ccp(self.contentSize.width, 0), ccp(self.contentSize.width, self.contentSize.height));
+        ccDrawLine(ccp(0, self.contentSize.height), ccp(self.contentSize.width, self.contentSize.height));
+        ccDrawLine(ccp(0,0), ccp(self.contentSize.width, self.contentSize.height));
+        ccDrawLine(ccp(0, self.contentSize.height), ccp(self.contentSize.width, 0));
+    }
 }
-*/
 
 #pragma mark -
 #pragma mark <CCLabelProtocol> Methods
 
 - (void)setString:(NSString*)label {
-    [self.label setString:label];
+    initialString_ = label;
     [self updateLabel];
 }
 /** returns the string that is rendered */
 -(NSString*)string {
-    return [self.label string];
+    return [label_ string];
+}
+
+#pragma mark -
+#pragma mark Setter Methods
+
+//Overwrite default setter methods
+
+- (void)setDimension:(CGSize)dimension {
+    dimension_ = dimension;
+    [self updateLabel];
+}
+
+- (void)setAlignment:(CCLabelBMFontMultilineAlignment)alignment {
+    alignment_ = alignment;
+    [self updateLabel];
 }
 
 @end

@@ -13,15 +13,18 @@ typedef enum {
 
 @interface CCLabelBMFontMultiline : CCNode <CCLabelProtocol> {
     CCLabelBMFont *label_;
+    NSString *fntFile_;
+    NSString *initialString_;
     CGSize dimension_;
     CCLabelBMFontMultilineAlignment alignment_;
-    NSString *fntFile_;
+    
+    BOOL debug_;
 }
 
-@property (nonatomic,retain) CCLabelBMFont *label;
-@property (nonatomic,assign) CGSize dimension;
-@property (nonatomic,assign) CCLabelBMFontMultilineAlignment alignment;
-@property (nonatomic,retain) NSString *fntFile;
+@property (nonatomic,assign,readonly) CGSize dimension;
+@property (nonatomic,assign,readonly) CCLabelBMFontMultilineAlignment alignment;
+
+@property (nonatomic,assign) BOOL debug;
 
 - (id)initWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment;
 
@@ -30,5 +33,8 @@ typedef enum {
 - (void)setString:(NSString*)label;
 /** returns the string that is rendered */
 - (NSString*)string;
+
+- (void)setDimension:(CGSize)dimension;
+- (void)setAlignment:(CCLabelBMFontMultilineAlignment)alignment;
 
 @end
