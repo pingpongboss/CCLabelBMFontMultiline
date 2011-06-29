@@ -40,7 +40,7 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		// create and initialize a Label
-		CCLabelBMFontMultiline *label = [CCLabelBMFontMultiline labelWithString:LongSentence fntFile:@"markerFelt.fnt" dimensions:CGSizeMake(480, 320) alignment:LeftAlignment];
+		CCLabelBMFontMultiline *label = [CCLabelBMFontMultiline labelWithString:LongSentence fntFile:@"markerFelt.fnt" dimensions:CGSizeMake(480, 320) alignment:CenterAlignment];
 	
 		// position the label on the center of the screen
 		label.position =  ccp( size.width/2 , size.height/2 );

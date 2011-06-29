@@ -178,7 +178,7 @@
 }
 
 //Draw the bounding box of this CCLabelBMFontMultiline for troubleshooting
-///*
+/*
 - (void)draw {
     glLineWidth(5);
     glColor4f(255, 0, 0, 255);
@@ -189,7 +189,7 @@
     ccDrawLine(ccp(0,0), ccp(self.contentSize.width, self.contentSize.height));
     ccDrawLine(ccp(0, self.contentSize.height), ccp(self.contentSize.width, 0));
 }
-//*/
+*/
 
 #pragma mark -
 #pragma mark <CCLabelProtocol> Methods
