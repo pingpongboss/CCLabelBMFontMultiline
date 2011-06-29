@@ -54,7 +54,8 @@
     //Step 1: Make multiline
     
     NSString *multilineString = @"", *lastWord = @"";
-    int line = 1, i = 0, offset = 0, stringLength = [[label_ string] length];
+    int line = 1, i = 0, stringLength = [[label_ string] length];
+    float startOfLine = -1, startOfWord = -1;
     //Go through each character and insert line breaks as necessary
     for (CCSprite *characterSprite in self.label.children) {
         
@@ -63,6 +64,11 @@
         
         unichar character = [[self.label string] characterAtIndex:i];
         
+        if (startOfWord == -1)
+            startOfWord = characterSprite.position.x - characterSprite.contentSize.width/2;
+        if (startOfLine == -1)
+            startOfLine = startOfWord;
+        
         //Character is a line break
         //Put lastWord on the current line and start a new line
         //Reset lastWord
@@ -70,13 +76,20 @@
             lastWord = [[lastWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] stringByAppendingFormat:@"%C", character];
             multilineString = [multilineString stringByAppendingString:lastWord];
             lastWord = @"";
+            startOfWord = -1;
             line++;
+            startOfLine = -1;
             i++;
             
             //CCLabelBMFont do not have a character for new lines, so do NOT "continue;" in the for loop. Process the next character
             if (i >= stringLength || i < 0)
                 break;
             character = [[self.label string] characterAtIndex:i];
+            
+            if (startOfWord == -1)
+                startOfWord = characterSprite.position.x - characterSprite.contentSize.width/2;
+            if (startOfLine == -1)
+                startOfLine = startOfWord;
         }
         
         //Character is a whitespace
@@ -86,6 +99,7 @@
             lastWord = [lastWord stringByAppendingFormat:@"%C", character];
             multilineString = [multilineString stringByAppendingString:lastWord];
             lastWord = @"";
+            startOfWord = -1;
             i++;
             continue;
         }
@@ -93,12 +107,12 @@
         //Character is out of bounds
         //Do not put lastWord on current line. Add "\n" to current line to start a new line
         //Append to lastWord
-        if (characterSprite.position.x + characterSprite.contentSize.width/2 - offset > line * self.dimension.width) {
+        if (characterSprite.position.x + characterSprite.contentSize.width/2 - startOfLine > self.dimension.width) {
             lastWord = [lastWord stringByAppendingFormat:@"%C", character];
             NSString *trimmedString = [multilineString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             multilineString = [trimmedString stringByAppendingString:@"\n"];
-            offset += [lastWord length];
             line++;
+            startOfLine = -1;
             i++;
             continue;
         } else {
@@ -164,10 +178,10 @@
 }
 
 //Draw the bounding box of this CCLabelBMFontMultiline for troubleshooting
-/*
+///*
 - (void)draw {
     glLineWidth(5);
-    glColor4f(0, 0, 0, 255);
+    glColor4f(255, 0, 0, 255);
     ccDrawLine(ccp(0,0), ccp(0, self.contentSize.height));
     ccDrawLine(ccp(0,0), ccp(self.contentSize.width, 0));
     ccDrawLine(ccp(self.contentSize.width, 0), ccp(self.contentSize.width, self.contentSize.height));
@@ -175,7 +189,7 @@
     ccDrawLine(ccp(0,0), ccp(self.contentSize.width, self.contentSize.height));
     ccDrawLine(ccp(0, self.contentSize.height), ccp(self.contentSize.width, 0));
 }
-*/
+//*/
 
 #pragma mark -
 #pragma mark <CCLabelProtocol> Methods

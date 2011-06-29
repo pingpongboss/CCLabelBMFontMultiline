@@ -7,7 +7,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-typedef enum {CenterAlignment, LeftAlignment} CCLabelBMFontMultilineAlignment;
+typedef enum {
+    CenterAlignment, LeftAlignment, RightAlignment
+} CCLabelBMFontMultilineAlignment;
 
 @interface CCLabelBMFontMultiline : CCNode <CCLabelProtocol> {
     CCLabelBMFont *label_;
@@ -16,17 +18,17 @@ typedef enum {CenterAlignment, LeftAlignment} CCLabelBMFontMultilineAlignment;
     NSString *fntFile_;
 }
 
-@property (retain) CCLabelBMFont *label;
-@property (assign) CGSize dimension;
-@property (assign) CCLabelBMFontMultilineAlignment alignment;
-@property (retain) NSString *fntFile;
+@property (nonatomic,retain) CCLabelBMFont *label;
+@property (nonatomic,assign) CGSize dimension;
+@property (nonatomic,assign) CCLabelBMFontMultilineAlignment alignment;
+@property (nonatomic,retain) NSString *fntFile;
 
 - (id)initWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment;
 
 + (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment;
 
--(void) setString:(NSString*)label;
+- (void)setString:(NSString*)label;
 /** returns the string that is rendered */
--(NSString*) string;
+- (NSString*)string;
 
 @end
