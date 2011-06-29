@@ -211,7 +211,7 @@
 #pragma mark <CCLabelProtocol> Methods
 
 - (void)setString:(NSString*)label {
-    initialString_ = label;
+    initialString_ = [label copy];
     [self updateLabel];
 }
 /** returns the string that is rendered */
