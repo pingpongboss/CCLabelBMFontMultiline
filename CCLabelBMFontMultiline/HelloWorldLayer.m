@@ -56,13 +56,14 @@ static float menuItemPaddingCenter = 50;
         self.arrows = [CCSprite spriteWithFile:@"arrows.png"];
         
         [CCMenuItemFont setFontSize:20];
-        
-        CCMenuItemFont *longSentences = [CCMenuItemFont itemFromString:@"Long Sentences With No Line Breaks" target:self selector:@selector(stringChanged:)];
-        CCMenuItemFont *lineBreaks = [CCMenuItemFont itemFromString:@"Short Sentences \\n With Line Breaks" target:self selector:@selector(stringChanged:)];
-        CCMenuItemFont *mixed = [CCMenuItemFont itemFromString:@"Long Sentences With Line \\n Breaks" target:self selector:@selector(stringChanged:)];
+        CCMenuItemFont *longSentences = [CCMenuItemFont itemFromString:@"Long Flowing Sentences" target:self selector:@selector(stringChanged:)];
+        CCMenuItemFont *lineBreaks = [CCMenuItemFont itemFromString:@"Short Sentences With Intentional Line Breaks" target:self selector:@selector(stringChanged:)];
+        CCMenuItemFont *mixed = [CCMenuItemFont itemFromString:@"Long Sentences Mixed With Intentional Line Breaks" target:self selector:@selector(stringChanged:)];
         CCMenu *stringMenu = [CCMenu menuWithItems:longSentences, lineBreaks, mixed, nil];
         [stringMenu alignItemsVertically];
         
+        [longSentences setColor:ccRED];
+        lastSentenceItem_ = longSentences;
         longSentences.tag = LongSentences;
         lineBreaks.tag = LineBreaks;
         mixed.tag = Mixed;
@@ -75,6 +76,8 @@ static float menuItemPaddingCenter = 50;
         CCMenu *alignmentMenu = [CCMenu menuWithItems:left, center, right, nil];
         [alignmentMenu alignItemsHorizontallyWithPadding:alignmentItemPadding];
         
+        [center setColor:ccRED];
+        lastAlignmentItem_ = center;
         left.tag = LeftAlign;
         center.tag = CenterAlign;
         right.tag = RightAlign;
@@ -107,7 +110,10 @@ static float menuItemPaddingCenter = 50;
 #pragma mark Action Methods
 
 - (void)stringChanged:(id)sender {
-    CCMenuItem *item = sender;
+    CCMenuItemFont *item = sender;
+    [item setColor:ccRED];
+    [lastSentenceItem_ setColor:ccWHITE];
+    lastSentenceItem_ = item;
     
     switch (item.tag) {
         case LongSentences:
@@ -126,7 +132,10 @@ static float menuItemPaddingCenter = 50;
 }
 
 - (void)alignmentChanged:(id)sender {
-    CCMenuItem *item = sender;
+    CCMenuItemFont *item = sender;
+    [item setColor:ccRED];
+    [lastAlignmentItem_ setColor:ccWHITE];
+    lastAlignmentItem_ = item;
     
     switch (item.tag) {
         case LeftAlign:

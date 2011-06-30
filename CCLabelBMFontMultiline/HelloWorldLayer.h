@@ -12,7 +12,7 @@
 @class CCLabelBMFontMultiline;
 
 #define LongSentencesExample @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-#define LineBreaksExample @"Lorem ipsum dolor\nsit amet\nconsectetur adipisicing elit"
+#define LineBreaksExample @"Lorem ipsum dolor\nsit amet\nconsectetur adipisicing elit\nblah\nblah"
 #define MixedExample @"ABC\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt\nDEF"
 
 #define ArrowsMax 0.95
@@ -31,6 +31,8 @@
 {
     CCLabelBMFontMultiline *label_;
     CCSprite *arrows_;
+    
+    CCMenuItemFont *lastSentenceItem_, *lastAlignmentItem_;
     
     BOOL drag_;
 }
