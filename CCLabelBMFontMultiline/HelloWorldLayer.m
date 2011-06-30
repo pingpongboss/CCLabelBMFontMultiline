@@ -14,10 +14,17 @@
 static float alignmentItemPadding = 50;
 static float menuItemPaddingCenter = 50;
 
+@interface HelloWorldLayer ()
+
+- (void)snapArrowsToEdge;
+
+@end
+
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 
 @synthesize label = label_;
+@synthesize arrowsBar = arrowsBar_;
 @synthesize arrows = arrows_;
 
 #pragma mark -
@@ -53,6 +60,7 @@ static float menuItemPaddingCenter = 50;
 		self.label = [CCLabelBMFontMultiline labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" dimensions:CGSizeMake(size.width/1.5, size.height/1.5) alignment:CenterAlignment];
         self.label.debug = YES;
         
+        self.arrowsBar = [CCSprite spriteWithFile:@"arrowsBar.png"];
         self.arrows = [CCSprite spriteWithFile:@"arrows.png"];
         
         [CCMenuItemFont setFontSize:20];
@@ -84,12 +92,21 @@ static float menuItemPaddingCenter = 50;
 	
 		// position the label on the center of the screen
 		self.label.position =  ccp( size.width/2 , size.height/2 );
-        self.arrows.position = ccp(self.label.position.x + self.label.contentSize.width/2, self.label.position.y);
+        
+        self.arrowsBar.visible = NO;
+        
+        float arrowsWidth = (ArrowsMax - ArrowsMin) * size.width;
+        self.arrowsBar.scaleX = arrowsWidth / self.arrowsBar.contentSize.width;
+        self.arrowsBar.position = ccp(((ArrowsMax + ArrowsMin) / 2) * size.width, self.label.position.y);
+        
+        [self snapArrowsToEdge];
+        
         stringMenu.position = ccp(size.width/2, size.height - menuItemPaddingCenter);
         alignmentMenu.position = ccp(size.width/2, menuItemPaddingCenter);
         
 		// add the label as a child to this Layer
 		[self addChild:self.label];
+        [self addChild:self.arrowsBar];
         [self addChild:self.arrows];
         [self addChild:stringMenu];
         [self addChild:alignmentMenu];
@@ -102,6 +119,7 @@ static float menuItemPaddingCenter = 50;
 {
     self.label = nil;
     self.arrows = nil;
+    self.arrowsBar = nil;
     
 	[super dealloc];
 }
@@ -129,6 +147,8 @@ static float menuItemPaddingCenter = 50;
         default:
             break;
     }
+    
+    [self snapArrowsToEdge];
 }
 
 - (void)alignmentChanged:(id)sender {
@@ -151,6 +171,8 @@ static float menuItemPaddingCenter = 50;
         default:
             break;
     }
+    
+    [self snapArrowsToEdge];
 }
 
 #pragma mark -
@@ -162,11 +184,15 @@ static float menuItemPaddingCenter = 50;
     
     if (CGRectContainsPoint([self.arrows boundingBox], location)) {
         drag_ = YES;
+        self.arrowsBar.visible = YES;
     }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     drag_ = NO;
+    [self snapArrowsToEdge];
+    
+    self.arrowsBar.visible = NO;
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -182,6 +208,10 @@ static float menuItemPaddingCenter = 50;
     float labelWidth = abs(self.arrows.position.x - self.label.position.x) * 2;
     
     [self.label setDimension:CGSizeMake(labelWidth, self.label.dimension.height)];
+}
+
+- (void)snapArrowsToEdge {
+    self.arrows.position = ccp(self.label.position.x + self.label.contentSize.width/2, self.label.position.y);
 }
 
 @end

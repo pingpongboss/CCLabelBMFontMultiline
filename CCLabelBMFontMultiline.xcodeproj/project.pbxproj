@@ -129,6 +129,8 @@
 		4DA261F213BB0AAC00FE16A2 /* markerFelt-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261EE13BB0AAC00FE16A2 /* markerFelt-hd.png */; };
 		4DA261F313BB0AAC00FE16A2 /* markerFelt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261EF13BB0AAC00FE16A2 /* markerFelt.fnt */; };
 		4DA261F413BB0AAC00FE16A2 /* markerFelt.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261F013BB0AAC00FE16A2 /* markerFelt.png */; };
+		4DE619C213BCF3A600F5F226 /* arrowsBar-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE619C013BCF3A600F5F226 /* arrowsBar-hd.png */; };
+		4DE619C313BCF3A600F5F226 /* arrowsBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE619C113BCF3A600F5F226 /* arrowsBar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -375,6 +377,8 @@
 		4DA261EE13BB0AAC00FE16A2 /* markerFelt-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerFelt-hd.png"; sourceTree = "<group>"; };
 		4DA261EF13BB0AAC00FE16A2 /* markerFelt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = markerFelt.fnt; sourceTree = "<group>"; };
 		4DA261F013BB0AAC00FE16A2 /* markerFelt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markerFelt.png; sourceTree = "<group>"; };
+		4DE619C013BCF3A600F5F226 /* arrowsBar-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowsBar-hd.png"; sourceTree = "<group>"; };
+		4DE619C113BCF3A600F5F226 /* arrowsBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowsBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +403,8 @@
 		4D2A4E3E13BBAF7600B3D7F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4DE619C013BCF3A600F5F226 /* arrowsBar-hd.png */,
+				4DE619C113BCF3A600F5F226 /* arrowsBar.png */,
 				4D2A4E4013BBAF7D00B3D7F7 /* arrows-hd.png */,
 				4D2A4E4113BBAF7D00B3D7F7 /* arrows.png */,
 			);
@@ -862,6 +868,8 @@
 				4DA261F413BB0AAC00FE16A2 /* markerFelt.png in Resources */,
 				4D2A4E4213BBAF7D00B3D7F7 /* arrows-hd.png in Resources */,
 				4D2A4E4313BBAF7D00B3D7F7 /* arrows.png in Resources */,
+				4DE619C213BCF3A600F5F226 /* arrowsBar-hd.png in Resources */,
+				4DE619C313BCF3A600F5F226 /* arrowsBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

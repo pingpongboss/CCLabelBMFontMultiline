@@ -25,18 +25,12 @@
 #pragma mark Lifecycle Methods
 
 - (id)initWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment {
-    self = [super init];
+    self = [super initWithString:string fntFile:font];
     if (self) {
-        label_ = [[CCLabelBMFont alloc] initWithString:string fntFile:font];
-        fntFile_ = [font copy];
         initialString_ = [string copy];
         
         dimension_ = size;
-        alignment_ = alignment;
-        
-        self.contentSize = size;
-        self.anchorPoint = ccp(0.5f, 0.5f);
-        
+        alignment_ = alignment;        
         
         [self updateLabel];
     }
@@ -48,8 +42,6 @@
 }
 
 - (void)dealloc {
-    [label_ release], label_ = nil;
-    [fntFile_ release], fntFile_ = nil;
     [initialString_ release], initialString_ = nil;
     
     [super dealloc];
@@ -58,22 +50,26 @@
 #pragma mark -
 
 - (void)updateLabel {
-    [self removeChild:label_ cleanup:YES];
-    [label_ release];
-    label_ = [[CCLabelBMFont alloc] initWithString:initialString_ fntFile:fntFile_];
+    
+    [string_ release];
+    string_ = [initialString_ copy];
+    
+    [self removeAllChildrenWithCleanup:YES]; //Inserted so fontChars do not get reused
+    
+    [self createFontChars];
     
     //Step 1: Make multiline
     
     NSString *multilineString = @"", *lastWord = @"";
-    int line = 1, i = 0, stringLength = [[label_ string] length];
+    int line = 1, i = 0, stringLength = [self.string length];
     float startOfLine = -1, startOfWord = -1;
     //Go through each character and insert line breaks as necessary
-    for (CCSprite *characterSprite in label_.children) {
+    for (CCSprite *characterSprite in self.children) {
         
         if (i >= stringLength || i < 0)
             break;
         
-        unichar character = [[label_ string] characterAtIndex:i];
+        unichar character = [self.string characterAtIndex:i];
         
         if (startOfWord == -1)
             startOfWord = characterSprite.position.x - characterSprite.contentSize.width/2;
@@ -95,7 +91,7 @@
             //CCLabelBMFont do not have a character for new lines, so do NOT "continue;" in the for loop. Process the next character
             if (i >= stringLength || i < 0)
                 break;
-            character = [[label_ string] characterAtIndex:i];
+            character = [self.string characterAtIndex:i];
             
             if (startOfWord == -1)
                 startOfWord = characterSprite.position.x - characterSprite.contentSize.width/2;
@@ -137,9 +133,24 @@
     
     multilineString = [multilineString stringByAppendingFormat:@"%@", lastWord];
     
-    [label_ release];
-    label_ = [[CCLabelBMFont alloc] initWithString:multilineString fntFile:fntFile_];
-    [self addChild:label_];
+    
+    //Set the label's string to multilineString. But we don't want to use [super setString]
+    //because -createFontChars does the "reusing fonts" bit which messes stuff up
+    //
+    //
+    //Taken from CCLabelBMFont -(void)setString:(NSString *)label
+    
+    [string_ release];
+     string_ = [multilineString copy];
+    
+    [self removeAllChildrenWithCleanup:YES]; //Inserted so fontChars do not get reused by -createFontChars
+    
+    [self createFontChars];
+    
+    //END Taken from CCLabelBMFont
+    //
+    //
+    
     
     //Step 2: Make alignment
     
@@ -153,11 +164,11 @@
             
             //Find index of last character in this line
             int index = i + [lineString length] - 1;
-            if (index < 0 || index >= [label_.children count])
+            if (index < 0 || index >= [self.children count])
                 continue;
             
             //Find position of last character on the line
-            CCSprite *lastChar = [label_.children objectAtIndex:index];
+            CCSprite *lastChar = [self.children objectAtIndex:index];
             
             lineWidth = lastChar.position.x + lastChar.contentSize.width/2;
             
@@ -165,10 +176,10 @@
             float shift = 0;
             switch (self.alignment) {
                 case CenterAlignment:
-                    shift = label_.contentSize.width/2 - lineWidth/2;
+                    shift = self.contentSize.width/2 - lineWidth/2;
                     break;
                 case RightAlignment:
-                    shift = label_.contentSize.width - lineWidth;
+                    shift = self.contentSize.width - lineWidth;
                 default:
                     break;
             }
@@ -178,9 +189,9 @@
                 //For each character, shift it so that the line is center aligned
                 for (j = 0; j < [lineString length]; j++) {
                     index = i + j;
-                    if (index < 0 || index >= [label_.children count])
+                    if (index < 0 || index >= [self.children count])
                         continue;
-                    CCSprite *characterSprite = [label_.children objectAtIndex:index];
+                    CCSprite *characterSprite = [self.children objectAtIndex:index];
                     characterSprite.position = ccpAdd(characterSprite.position, ccp(shift, 0));
                 }
             }
@@ -188,13 +199,12 @@
             lineNumber++;
         }
     }
-    
-    self.contentSize = label_.contentSize;    
-    label_.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 }
 
 //Draw the bounding box of this CCLabelBMFontMultiline for troubleshooting
 - (void)draw {
+    [super draw];
+    
     if (debug_) {
         glLineWidth(5);
         glColor4f(255, 0, 0, 255);
@@ -213,11 +223,10 @@
 - (void)setString:(NSString*)label {
     [initialString_ release];
     initialString_ = [label copy];
+    
+    [super setString:label];
+    
     [self updateLabel];
-}
-/** returns the string that is rendered */
--(NSString*)string {
-    return [label_ string];
 }
 
 #pragma mark -

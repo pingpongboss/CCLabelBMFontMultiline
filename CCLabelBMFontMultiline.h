@@ -11,10 +11,9 @@ typedef enum {
     CenterAlignment, LeftAlignment, RightAlignment
 } CCLabelBMFontMultilineAlignment;
 
-@interface CCLabelBMFontMultiline : CCNode <CCLabelProtocol> {
-    CCLabelBMFont *label_;
-    NSString *fntFile_;
+@interface CCLabelBMFontMultiline : CCLabelBMFont {
     NSString *initialString_;
+    
     CGSize dimension_;
     CCLabelBMFontMultilineAlignment alignment_;
     
@@ -31,8 +30,6 @@ typedef enum {
 + (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment;
 
 - (void)setString:(NSString*)label;
-/** returns the string that is rendered */
-- (NSString*)string;
 
 - (void)setDimension:(CGSize)dimension;
 - (void)setAlignment:(CCLabelBMFontMultilineAlignment)alignment;

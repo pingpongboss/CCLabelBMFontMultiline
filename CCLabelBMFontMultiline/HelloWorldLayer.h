@@ -30,6 +30,8 @@
 @interface HelloWorldLayer : CCLayer
 {
     CCLabelBMFontMultiline *label_;
+    
+    CCSprite *arrowsBar_;
     CCSprite *arrows_;
     
     CCMenuItemFont *lastSentenceItem_, *lastAlignmentItem_;
@@ -38,6 +40,7 @@
 }
 
 @property (nonatomic,retain) CCLabelBMFontMultiline *label;
+@property (nonatomic,retain) CCSprite *arrowsBar;
 @property (nonatomic,retain) CCSprite *arrows;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
