@@ -2,19 +2,19 @@
 //  CCLabelBMFontMultiline.m
 //
 //  Created by Mark Wei on 6/14/11.
-//
+//  https://github.com/pingpongboss/CCLabelBMFontMultiline
 
 #import "CCLabelBMFontMultiline.h"
 
 @interface CCLabelBMFontMultiline()
-
-//Redefine properties readwrite for internal use
 
 - (void)updateLabel;
 
 @end
 
 @implementation CCLabelBMFontMultiline
+
+@synthesize initialString = initialString_;
 
 @synthesize dimension = dimension_;
 @synthesize alignment = alignment_;

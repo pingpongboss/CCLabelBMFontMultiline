@@ -448,13 +448,7 @@
 			children = (
 				4DA261E813BB086500FE16A2 /* CCLabelBMFontMultiline.h */,
 				4DA261E913BB086500FE16A2 /* CCLabelBMFontMultiline.m */,
-				4D3B8B9C13BB078500993381 /* AppDelegate.h */,
-				4D3B8B9D13BB078500993381 /* AppDelegate.m */,
-				4D3B8B9F13BB078500993381 /* RootViewController.h */,
-				4D3B8BA013BB078500993381 /* RootViewController.m */,
-				4D3B8BA213BB078500993381 /* HelloWorldLayer.h */,
-				4D3B8BA313BB078500993381 /* HelloWorldLayer.m */,
-				4D3B8BA513BB078500993381 /* GameConfig.h */,
+				4DAFFA7813D4A5BA00E6F7EA /* Demo */,
 				4D3B8A4B13BB078300993381 /* Resources */,
 				4D3B8A5F13BB078300993381 /* libs */,
 				4D3B8B9813BB078500993381 /* Supporting Files */,
@@ -801,6 +795,20 @@
 				4DA261F013BB0AAC00FE16A2 /* markerFelt.png */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		4DAFFA7813D4A5BA00E6F7EA /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				4D3B8B9C13BB078500993381 /* AppDelegate.h */,
+				4D3B8B9D13BB078500993381 /* AppDelegate.m */,
+				4D3B8B9F13BB078500993381 /* RootViewController.h */,
+				4D3B8BA013BB078500993381 /* RootViewController.m */,
+				4D3B8BA213BB078500993381 /* HelloWorldLayer.h */,
+				4D3B8BA313BB078500993381 /* HelloWorldLayer.m */,
+				4D3B8BA513BB078500993381 /* GameConfig.h */,
+			);
+			name = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

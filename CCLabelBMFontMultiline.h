@@ -20,6 +20,8 @@ typedef enum {
     BOOL debug_;
 }
 
+@property (nonatomic,copy,readonly) NSString *initialString;
+
 @property (nonatomic,assign,readonly) CGSize dimension;
 @property (nonatomic,assign,readonly) CCLabelBMFontMultilineAlignment alignment;
 
