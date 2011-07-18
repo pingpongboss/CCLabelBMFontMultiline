@@ -16,7 +16,7 @@
 
 @synthesize initialString = initialString_;
 
-@synthesize dimension = dimension_;
+@synthesize width = width_;
 @synthesize alignment = alignment_;
 
 @synthesize debug = debug_;
@@ -24,12 +24,12 @@
 #pragma mark -
 #pragma mark Lifecycle Methods
 
-- (id)initWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment {
+- (id)initWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment {
     self = [super initWithString:string fntFile:font];
     if (self) {
         initialString_ = [string copy];
         
-        dimension_ = size;
+        width_ = width;
         alignment_ = alignment;        
         
         [self updateLabel];
@@ -37,8 +37,8 @@
     return self;
 }
 
-+ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment {
-    return [[[CCLabelBMFontMultiline alloc] initWithString:string fntFile:font dimensions:size alignment:alignment] autorelease];
++ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment {
+    return [[[CCLabelBMFontMultiline alloc] initWithString:string fntFile:font width:width alignment:alignment] autorelease];
 }
 
 - (void)dealloc {
@@ -114,7 +114,7 @@
         //Character is out of bounds
         //Do not put lastWord on current line. Add "\n" to current line to start a new line
         //Append to lastWord
-        if (characterSprite.position.x + characterSprite.contentSize.width/2 - startOfLine > self.dimension.width) {
+        if (characterSprite.position.x + characterSprite.contentSize.width/2 - startOfLine > self.width) {
             lastWord = [lastWord stringByAppendingFormat:@"%C", character];
             NSString *trimmedString = [multilineString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             multilineString = [trimmedString stringByAppendingString:@"\n"];
@@ -234,8 +234,8 @@
 
 //Overwrite default setter methods
 
-- (void)setDimension:(CGSize)dimension {
-    dimension_ = dimension;
+- (void)setWidth:(float)width {
+    width_ = width;
     [self updateLabel];
 }
 

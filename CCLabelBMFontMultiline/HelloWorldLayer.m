@@ -57,7 +57,7 @@ static float menuItemPaddingCenter = 50;
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		// create and initialize a Label
-		self.label = [CCLabelBMFontMultiline labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" dimensions:CGSizeMake(size.width/1.5, size.height/1.5) alignment:CenterAlignment];
+		self.label = [CCLabelBMFontMultiline labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" width:size.width/1.5 alignment:CenterAlignment];
         self.label.debug = YES;
         
         self.arrowsBar = [CCSprite spriteWithFile:@"arrowsBar.png"];
@@ -207,7 +207,7 @@ static float menuItemPaddingCenter = 50;
     
     float labelWidth = abs(self.arrows.position.x - self.label.position.x) * 2;
     
-    [self.label setDimension:CGSizeMake(labelWidth, self.label.dimension.height)];
+    [self.label setWidth:labelWidth];
 }
 
 - (void)snapArrowsToEdge {

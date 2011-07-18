@@ -14,7 +14,7 @@ typedef enum {
 @interface CCLabelBMFontMultiline : CCLabelBMFont {
     NSString *initialString_;
     
-    CGSize dimension_;
+    float width_;
     CCLabelBMFontMultilineAlignment alignment_;
     
     BOOL debug_;
@@ -22,18 +22,18 @@ typedef enum {
 
 @property (nonatomic,copy,readonly) NSString *initialString;
 
-@property (nonatomic,assign,readonly) CGSize dimension;
+@property (nonatomic,assign,readonly) float width;
 @property (nonatomic,assign,readonly) CCLabelBMFontMultilineAlignment alignment;
 
 @property (nonatomic,assign) BOOL debug;
 
-- (id)initWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment;
+- (id)initWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment;
 
-+ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font dimensions:(CGSize)size alignment:(CCLabelBMFontMultilineAlignment)alignment;
++ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment;
 
 - (void)setString:(NSString*)label;
 
-- (void)setDimension:(CGSize)dimension;
+- (void)setWidth:(float)width;
 - (void)setAlignment:(CCLabelBMFontMultilineAlignment)alignment;
 
 @end
