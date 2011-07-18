@@ -10,7 +10,7 @@ In your code, do:
 CCLabelBMFontMultiline *label = [CCLabelBMFontMultiline
 	labelWithString:@"My Label"
 	fntFile:@"my-font-file.fnt"
-	dimensions:CGSizeMake(200, 100)
+	width:200
 	alignment:CenterAlignment];
 
 The included demo project has an sample .fnt file made using GlyphDesigner, and examples on how to use CCLabelBMFontMultiline.
