@@ -14,3 +14,6 @@ CCLabelBMFontMultiline *label = [CCLabelBMFontMultiline
 	alignment:CenterAlignment];
 
 The included demo project has an sample .fnt file made using GlyphDesigner, and examples on how to use CCLabelBMFontMultiline.
+
+Discussion thread is here http://www.cocos2d-iphone.org/forum/topic/16242
+Applied for inclusion in cocos2d-extensions here http://www.cocos2d-iphone.org/forum/topic/17106#post-119860
