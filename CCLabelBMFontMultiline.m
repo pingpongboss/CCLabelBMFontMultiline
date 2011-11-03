@@ -24,7 +24,7 @@
 #pragma mark -
 #pragma mark Lifecycle Methods
 
-- (id)initWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment {
+- (id)initWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(UITextAlignment)alignment {
     self = [super initWithString:string fntFile:font];
     if (self) {
         initialString_ = [string copy];
@@ -37,7 +37,7 @@
     return self;
 }
 
-+ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment {
++ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(UITextAlignment)alignment {
     return [[[CCLabelBMFontMultiline alloc] initWithString:string fntFile:font width:width alignment:alignment] autorelease];
 }
 
@@ -154,7 +154,7 @@
     
     //Step 2: Make alignment
     
-    if (self.alignment != LeftAlignment) {
+    if (self.alignment != UITextAlignmentLeft) {
         
         i = 0;
         int lineNumber = 0;
@@ -175,10 +175,10 @@
             //Figure out how much to shift each character in this line horizontally
             float shift = 0;
             switch (self.alignment) {
-                case CenterAlignment:
+                case UITextAlignmentCenter:
                     shift = self.contentSize.width/2 - lineWidth/2;
                     break;
-                case RightAlignment:
+                case UITextAlignmentRight:
                     shift = self.contentSize.width - lineWidth;
                 default:
                     break;
@@ -239,7 +239,7 @@
     [self updateLabel];
 }
 
-- (void)setAlignment:(CCLabelBMFontMultilineAlignment)alignment {
+- (void)setAlignment:(UITextAlignment)alignment {
     alignment_ = alignment;
     [self updateLabel];
 }
