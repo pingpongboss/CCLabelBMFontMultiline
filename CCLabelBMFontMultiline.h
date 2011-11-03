@@ -7,15 +7,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-typedef enum {
-    CenterAlignment, LeftAlignment, RightAlignment
-} CCLabelBMFontMultilineAlignment;
 
 @interface CCLabelBMFontMultiline : CCLabelBMFont {
     NSString *initialString_;
     
     float width_;
-    CCLabelBMFontMultilineAlignment alignment_;
+    UITextAlignment alignment_;
     
     BOOL debug_;
 }
@@ -23,17 +20,17 @@ typedef enum {
 @property (nonatomic,copy,readonly) NSString *initialString;
 
 @property (nonatomic,assign,readonly) float width;
-@property (nonatomic,assign,readonly) CCLabelBMFontMultilineAlignment alignment;
+@property (nonatomic,assign,readonly) UITextAlignment alignment;
 
 @property (nonatomic,assign) BOOL debug;
 
-- (id)initWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment;
+- (id)initWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(UITextAlignment)alignment;
 
-+ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(CCLabelBMFontMultilineAlignment)alignment;
++ (CCLabelBMFontMultiline *)labelWithString:(NSString *)string fntFile:(NSString *)font width:(float)width alignment:(UITextAlignment)alignment;
 
 - (void)setString:(NSString*)label;
 
 - (void)setWidth:(float)width;
-- (void)setAlignment:(CCLabelBMFontMultilineAlignment)alignment;
+- (void)setAlignment:(UITextAlignment)alignment;
 
 @end
