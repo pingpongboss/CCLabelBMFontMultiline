@@ -9,7 +9,6 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
-@class CCLabelBMFontMultiline;
 
 #define LongSentencesExample @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 #define LineBreaksExample @"Lorem ipsum dolor\nsit amet\nconsectetur adipisicing elit\nblah\nblah"
@@ -27,9 +26,9 @@
 #define Mixed 2
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+@interface CCLabelBMFontTest : CCLayer
 {
-    CCLabelBMFontMultiline *label_;
+    CCLabelBMFont *label_;
     
     CCSprite *arrowsBar_;
     CCSprite *arrows_;
@@ -39,7 +38,7 @@
     BOOL drag_;
 }
 
-@property (nonatomic,retain) CCLabelBMFontMultiline *label;
+@property (nonatomic,retain) CCLabelBMFont *label;
 @property (nonatomic,retain) CCSprite *arrowsBar;
 @property (nonatomic,retain) CCSprite *arrows;
 

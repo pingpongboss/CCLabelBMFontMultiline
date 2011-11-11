@@ -1,19 +1,18 @@
 A replacement for CCLabelBMFont. Useful if you want:
- - Center alignment
- - Auto word wrap
- - Specify dimensions
+ - Left, Center, and Right alignments for single and multi line labels
+ - Auto word wrap for inserting line breaks intelligently based on given width
 
-To use, download both CCLabelBMFontMultiline.h and CCLabelBMFontMultiline.m, open XCode, and drag the 2 files into the Classes Group.
+To use, download both CCLabelBMFont.h and CCLabelBMFont.m, and replace the 2 files under the cocos2d folder with the new modified files.
 
 In your code, do:
 
-CCLabelBMFontMultiline *label = [CCLabelBMFontMultiline
+CCLabelBMFont *label = [CCLabelBMFont
 	labelWithString:@"My Label"
 	fntFile:@"my-font-file.fnt"
 	width:200
 	alignment:CenterAlignment];
 
-The included demo project has an sample .fnt file made using GlyphDesigner, and examples on how to use CCLabelBMFontMultiline.
+The included demo project has an sample .fnt file made using GlyphDesigner, and examples on how to use CCLabelBMFont.
 
 Discussion thread is here http://www.cocos2d-iphone.org/forum/topic/16242
 Applied for inclusion in cocos2d-extensions here http://www.cocos2d-iphone.org/forum/topic/17106#post-119860

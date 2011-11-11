@@ -8,20 +8,19 @@
 
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
-#import "CCLabelBMFontMultiline.h"
+#import "CCLabelBMFontTest.h"
 
 static float alignmentItemPadding = 50;
 static float menuItemPaddingCenter = 50;
 
-@interface HelloWorldLayer ()
+@interface CCLabelBMFontTest ()
 
 - (void)snapArrowsToEdge;
 
 @end
 
 // HelloWorldLayer implementation
-@implementation HelloWorldLayer
+@implementation CCLabelBMFontTest
 
 @synthesize label = label_;
 @synthesize arrowsBar = arrowsBar_;
@@ -36,7 +35,7 @@ static float menuItemPaddingCenter = 50;
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	CCLabelBMFontTest *layer = [CCLabelBMFontTest node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -57,8 +56,8 @@ static float menuItemPaddingCenter = 50;
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		// create and initialize a Label
-		self.label = [CCLabelBMFontMultiline labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" width:size.width/1.5 alignment:UITextAlignmentCenter];
-        self.label.debug = YES;
+		self.label = [CCLabelBMFont labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" width:size.width/1.5 alignment:UITextAlignmentCenter];
+        //self.label.debug = YES;
         
         self.arrowsBar = [CCSprite spriteWithFile:@"arrowsBar.png"];
         self.arrows = [CCSprite spriteWithFile:@"arrows.png"];

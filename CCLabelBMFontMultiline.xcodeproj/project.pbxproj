@@ -123,12 +123,12 @@
 		4D3B8B9B13BB078500993381 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B8B9A13BB078500993381 /* main.m */; };
 		4D3B8B9E13BB078500993381 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B8B9D13BB078500993381 /* AppDelegate.m */; };
 		4D3B8BA113BB078500993381 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B8BA013BB078500993381 /* RootViewController.m */; };
-		4D3B8BA413BB078500993381 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B8BA313BB078500993381 /* HelloWorldLayer.m */; };
-		4DA261EA13BB086500FE16A2 /* CCLabelBMFontMultiline.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA261E913BB086500FE16A2 /* CCLabelBMFontMultiline.m */; };
+		4D3B8BA413BB078500993381 /* CCLabelBMFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B8BA313BB078500993381 /* CCLabelBMFontTest.m */; };
 		4DA261F113BB0AAC00FE16A2 /* markerFelt-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261ED13BB0AAC00FE16A2 /* markerFelt-hd.fnt */; };
 		4DA261F213BB0AAC00FE16A2 /* markerFelt-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261EE13BB0AAC00FE16A2 /* markerFelt-hd.png */; };
 		4DA261F313BB0AAC00FE16A2 /* markerFelt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261EF13BB0AAC00FE16A2 /* markerFelt.fnt */; };
 		4DA261F413BB0AAC00FE16A2 /* markerFelt.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DA261F013BB0AAC00FE16A2 /* markerFelt.png */; };
+		4DA4227A146CEA01008A6B5D /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4DA42279146CEA01008A6B5D /* README */; };
 		4DE619C213BCF3A600F5F226 /* arrowsBar-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE619C013BCF3A600F5F226 /* arrowsBar-hd.png */; };
 		4DE619C313BCF3A600F5F226 /* arrowsBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE619C113BCF3A600F5F226 /* arrowsBar.png */; };
 /* End PBXBuildFile section */
@@ -368,15 +368,14 @@
 		4D3B8B9D13BB078500993381 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4D3B8B9F13BB078500993381 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4D3B8BA013BB078500993381 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4D3B8BA213BB078500993381 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		4D3B8BA313BB078500993381 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		4D3B8BA213BB078500993381 /* CCLabelBMFontTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCLabelBMFontTest.h; sourceTree = "<group>"; };
+		4D3B8BA313BB078500993381 /* CCLabelBMFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCLabelBMFontTest.m; sourceTree = "<group>"; };
 		4D3B8BA513BB078500993381 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
-		4DA261E813BB086500FE16A2 /* CCLabelBMFontMultiline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelBMFontMultiline.h; sourceTree = SOURCE_ROOT; };
-		4DA261E913BB086500FE16A2 /* CCLabelBMFontMultiline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelBMFontMultiline.m; sourceTree = SOURCE_ROOT; };
 		4DA261ED13BB0AAC00FE16A2 /* markerFelt-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "markerFelt-hd.fnt"; sourceTree = "<group>"; };
 		4DA261EE13BB0AAC00FE16A2 /* markerFelt-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerFelt-hd.png"; sourceTree = "<group>"; };
 		4DA261EF13BB0AAC00FE16A2 /* markerFelt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = markerFelt.fnt; sourceTree = "<group>"; };
 		4DA261F013BB0AAC00FE16A2 /* markerFelt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markerFelt.png; sourceTree = "<group>"; };
+		4DA42279146CEA01008A6B5D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4DE619C013BCF3A600F5F226 /* arrowsBar-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowsBar-hd.png"; sourceTree = "<group>"; };
 		4DE619C113BCF3A600F5F226 /* arrowsBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowsBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -417,6 +416,7 @@
 				4D3B8A4A13BB078300993381 /* CCLabelBMFontMultiline */,
 				4D3B8A3913BB078300993381 /* Frameworks */,
 				4D3B8A3713BB078300993381 /* Products */,
+				4DA42279146CEA01008A6B5D /* README */,
 			);
 			sourceTree = "<group>";
 		};
@@ -446,8 +446,8 @@
 		4D3B8A4A13BB078300993381 /* CCLabelBMFontMultiline */ = {
 			isa = PBXGroup;
 			children = (
-				4DA261E813BB086500FE16A2 /* CCLabelBMFontMultiline.h */,
-				4DA261E913BB086500FE16A2 /* CCLabelBMFontMultiline.m */,
+				4D3B8AA713BB078400993381 /* CCLabelBMFont.h */,
+				4D3B8AA813BB078400993381 /* CCLabelBMFont.m */,
 				4DAFFA7813D4A5BA00E6F7EA /* Demo */,
 				4D3B8A4B13BB078300993381 /* Resources */,
 				4D3B8A5F13BB078300993381 /* libs */,
@@ -541,8 +541,6 @@
 				4D3B8AA213BB078400993381 /* CCGrid.m */,
 				4D3B8AA413BB078400993381 /* CCLabelAtlas.h */,
 				4D3B8AA513BB078400993381 /* CCLabelAtlas.m */,
-				4D3B8AA713BB078400993381 /* CCLabelBMFont.h */,
-				4D3B8AA813BB078400993381 /* CCLabelBMFont.m */,
 				4D3B8AAA13BB078400993381 /* CCLabelTTF.h */,
 				4D3B8AAB13BB078400993381 /* CCLabelTTF.m */,
 				4D3B8AAD13BB078400993381 /* CCLayer.h */,
@@ -804,8 +802,8 @@
 				4D3B8B9D13BB078500993381 /* AppDelegate.m */,
 				4D3B8B9F13BB078500993381 /* RootViewController.h */,
 				4D3B8BA013BB078500993381 /* RootViewController.m */,
-				4D3B8BA213BB078500993381 /* HelloWorldLayer.h */,
-				4D3B8BA313BB078500993381 /* HelloWorldLayer.m */,
+				4D3B8BA213BB078500993381 /* CCLabelBMFontTest.h */,
+				4D3B8BA313BB078500993381 /* CCLabelBMFontTest.m */,
 				4D3B8BA513BB078500993381 /* GameConfig.h */,
 			);
 			name = Demo;
@@ -878,6 +876,7 @@
 				4D2A4E4313BBAF7D00B3D7F7 /* arrows.png in Resources */,
 				4DE619C213BCF3A600F5F226 /* arrowsBar-hd.png in Resources */,
 				4DE619C313BCF3A600F5F226 /* arrowsBar.png in Resources */,
+				4DA4227A146CEA01008A6B5D /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,8 +984,7 @@
 				4D3B8B9B13BB078500993381 /* main.m in Sources */,
 				4D3B8B9E13BB078500993381 /* AppDelegate.m in Sources */,
 				4D3B8BA113BB078500993381 /* RootViewController.m in Sources */,
-				4D3B8BA413BB078500993381 /* HelloWorldLayer.m in Sources */,
-				4DA261EA13BB086500FE16A2 /* CCLabelBMFontMultiline.m in Sources */,
+				4D3B8BA413BB078500993381 /* CCLabelBMFontTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
