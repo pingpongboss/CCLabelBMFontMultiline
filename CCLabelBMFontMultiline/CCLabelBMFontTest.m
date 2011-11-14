@@ -56,7 +56,7 @@ static float menuItemPaddingCenter = 50;
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		// create and initialize a Label
-		self.label = [CCLabelBMFont labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" width:size.width/1.5 alignment:UITextAlignmentCenter];
+		self.label = [CCLabelBMFont labelWithString:LongSentencesExample fntFile:@"markerFelt.fnt" width:size.width/1.5 alignment:CCTextAlignmentCenter];
         //self.label.debug = YES;
         
         self.arrowsBar = [CCSprite spriteWithFile:@"arrowsBar.png"];
@@ -158,13 +158,13 @@ static float menuItemPaddingCenter = 50;
     
     switch (item.tag) {
         case LeftAlign:
-            [self.label setAlignment:UITextAlignmentLeft];
+            [self.label setAlignment:CCTextAlignmentLeft];
             break;
         case CenterAlign:
-            [self.label setAlignment:UITextAlignmentCenter];
+            [self.label setAlignment:CCTextAlignmentCenter];
             break;
         case RightAlign:
-            [self.label setAlignment:UITextAlignmentRight];
+            [self.label setAlignment:CCTextAlignmentRight];
             break;
             
         default:
