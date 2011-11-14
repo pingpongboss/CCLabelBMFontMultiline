@@ -1,3 +1,5 @@
+These patches will be integrated into version 2.0 of cocos2d-iphone https://github.com/cocos2d/cocos2d-iphone/pull/124
+
 A replacement for CCLabelBMFont. Useful if you want:
  - Left, Center, and Right alignments for single and multi line labels
  - Auto word wrap for inserting line breaks intelligently based on given width
